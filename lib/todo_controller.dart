@@ -20,7 +20,8 @@ class TodoViewController extends StateNotifier<TodoState> {
   TodoViewController(this.read) : super(const TodoState()) {}
   final Reader read;
 
-//   void addTodo({
-// state = todo,
-//   };
+  void addTodo(String name) {
+    final newtodo = [...state.todo, name];
+    state = state.copyWith(todo: newtodo);
+  }
 }

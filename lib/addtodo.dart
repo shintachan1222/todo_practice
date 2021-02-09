@@ -6,6 +6,7 @@ class Addtodo extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textcontroller = TextEditingController();
     return Scaffold(
         appBar: AppBar(
           title: const Text('AddTodo'),
@@ -13,11 +14,13 @@ class Addtodo extends HookWidget {
         body: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const TextField(),
+            TextField(
+              controller: textcontroller,
+            ),
             RaisedButton(
               child: const Text('Add'),
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.of(context).pop(textcontroller.text);
               },
             )
           ],

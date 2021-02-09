@@ -24,9 +24,11 @@ class Homepage extends HookWidget {
       ),
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
-          onPressed: () {
-            Navigator.of(context).push<String>(MaterialPageRoute<String>(
-                builder: (context) => const Addtodo()));
+          onPressed: () async {
+            final result = await Navigator.of(context).push<String>(
+                MaterialPageRoute<String>(
+                    builder: (context) => const Addtodo()));
+            controller.addTodo(result);
           }),
     );
   }
