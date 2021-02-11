@@ -5,7 +5,7 @@ import 'package:todo_practice/addtodo.dart';
 import 'package:todo_practice/todo_controller.dart';
 
 class Homepage extends HookWidget {
-  const Homepage({Key key}) : super(key: key);
+  const Homepage({Key key, String title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class Homepage extends HookWidget {
       body: ListView.builder(
         itemCount: state.length,
         itemBuilder: (BuildContext context, int index) {
-          return _listItem(state[index]);
+          return _listItem(context, state[index]);
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -33,22 +33,28 @@ class Homepage extends HookWidget {
     );
   }
 
-  Widget _listItem(String name) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5), // 影の色
-            spreadRadius: 1, // 影のサイズ
-            blurRadius: 7, // ブラーの強さ
-            offset: const Offset(1, 5), // 影の位置（右へのズレ,下へのズレ）
-          ),
-        ],
-      ),
-      margin: const EdgeInsets.all(10),
-      child: ListTile(
-        title: Text(name),
+  Widget _listItem(BuildContext context, String name) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context,
+            MaterialPageRoute<String>(builder: (context) => const Addtodo()));
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5), // 影の色
+              spreadRadius: 1, // 影のサイズ
+              blurRadius: 7, // ブラーの強さ
+              offset: const Offset(1, 5), // 影の位置（右へのズレ,下へのズレ）
+            ),
+          ],
+        ),
+        margin: const EdgeInsets.all(10),
+        child: ListTile(
+          title: Text(name),
+        ),
       ),
     );
   }

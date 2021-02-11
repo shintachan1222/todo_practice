@@ -14,7 +14,7 @@ class _$TodoStateTearOff {
   const _$TodoStateTearOff();
 
 // ignore: unused_element
-  _TodoState call({List<String> todo = const ['a', 'b', 'c']}) {
+  _TodoState call({List<String> todo = const ['宿題']}) {
     return _TodoState(
       todo: todo,
     );
@@ -88,10 +88,9 @@ class __$TodoStateCopyWithImpl<$Res> extends _$TodoStateCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_TodoState implements _TodoState {
-  const _$_TodoState({this.todo = const ['a', 'b', 'c']})
-      : assert(todo != null);
+  const _$_TodoState({this.todo = const ['宿題']}) : assert(todo != null);
 
-  @JsonKey(defaultValue: const ['a', 'b', 'c'])
+  @JsonKey(defaultValue: const ['宿題'])
   @override
   final List<String> todo;
 
