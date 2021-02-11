@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/all.dart';
-import 'package:todo_practice/addtodo.dart';
 import 'package:todo_practice/todo_controller.dart';
 
 class Homepage extends HookWidget {
@@ -25,9 +24,7 @@ class Homepage extends HookWidget {
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: () async {
-            final result = await Navigator.of(context).push<String>(
-                MaterialPageRoute<String>(
-                    builder: (context) => const Addtodo()));
+            final result = await Navigator.of(context).pushNamed<String>('/a');
             controller.addTodo(result);
           }),
     );
@@ -36,8 +33,7 @@ class Homepage extends HookWidget {
   Widget _listItem(BuildContext context, String name) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute<String>(builder: (context) => const Addtodo()));
+        Navigator.pushNamed<String>(context, '/c', arguments: name);
       },
       child: Container(
         decoration: BoxDecoration(
