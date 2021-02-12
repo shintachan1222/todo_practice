@@ -32,11 +32,7 @@ class Addtodo extends HookWidget {
                   child: const Text('Add'),
                   onPressed: () {
                     Navigator.of(context).pop(textcontroller.text);
-
-                    /// 値が空で返っちゃったときにtodoを作らないようにしたい
                   },
-
-                  /// 戻るアイコンで戻ったときにエラーが起きる
                 )
               ],
             ),

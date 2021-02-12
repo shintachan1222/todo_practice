@@ -28,7 +28,9 @@ class Homepage extends HookWidget {
             final result = await Navigator.of(context).push<String>(
                 MaterialPageRoute<String>(
                     builder: (context) => const Addtodo()));
-            controller.addTodo(result);
+            if (result != '') {
+              controller.addTodo(result);
+            }
           }),
     );
   }
