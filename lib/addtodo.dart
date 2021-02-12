@@ -6,24 +6,41 @@ class Addtodo extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textcontroller = TextEditingController();
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('AddTodo'),
-        ),
-        body: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextField(
-              controller: textcontroller,
+    TextEditingController textcontroller;
+    useEffect(() {
+      textcontroller = TextEditingController(text: '');
+      return () {};
+    });
+    return WillPopScope(
+      onWillPop: () {
+        Navigator.pop(context, '');
+        return Future.value(false);
+      },
+      child: Scaffold(
+          appBar: AppBar(
+            title: const Text('AddTodo'),
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: textcontroller,
+                ),
+                RaisedButton(
+                  child: const Text('Add'),
+                  onPressed: () {
+                    Navigator.of(context).pop(textcontroller.text);
+
+                    /// 値が空で返っちゃったときにtodoを作らないようにしたい
+                  },
+
+                  /// 戻るアイコンで戻ったときにエラーが起きる
+                )
+              ],
             ),
-            RaisedButton(
-              child: const Text('Add'),
-              onPressed: () {
-                Navigator.of(context).pop(textcontroller.text);
-              },
-            )
-          ],
-        ));
+          )),
+    );
   }
 }

@@ -17,7 +17,7 @@ class Homepage extends HookWidget {
         centerTitle: true,
       ),
       body: ListView.builder(
-        itemCount: state.length,
+        itemCount: state?.length,
         itemBuilder: (BuildContext context, int index) {
           return _listItem(context, state[index]);
         },
