@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class Changetodo extends StatelessWidget {
-  const Changetodo({Key key, String title}) : super(key: key);
+class Changetodo extends HookWidget {
+  const Changetodo({
+    Key key, String title
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
