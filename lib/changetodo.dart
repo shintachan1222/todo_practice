@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 class Changetodo extends HookWidget {
-  const Changetodo({
-    Key key, String title
-  }) : super(key: key);
+  const Changetodo({Key key, String title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final textcontroller = TextEditingController();
+    TextEditingController textcontroller;
+
     final arg = ModalRoute.of(context).settings.arguments;
-    print(arg);
+
+    useEffect(() {
+      textcontroller = TextEditingController(text: '$arg');
+
+      return () {};
+    });
     return Scaffold(
         appBar: AppBar(
           title: const Text('ChangeTodo'),

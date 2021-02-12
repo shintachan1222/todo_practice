@@ -36,9 +36,14 @@ class Homepage extends HookWidget {
   }
 
   Widget _listItem(BuildContext context, String name) {
+    final controller = useProvider(todoViewController);
     return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed<dynamic>(context, '/c', arguments: name);
+      onTap: () async {
+        final result =
+            await Navigator.pushNamed<String>(context, '/c', arguments: name);
+        if (result != '') {
+          controller.addTodo(result);
+        }
       },
       child: Container(
         decoration: BoxDecoration(
