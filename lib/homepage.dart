@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/all.dart';
 import 'package:todo_practice/addtodo.dart';
+import 'package:todo_practice/changetodo.dart';
 import 'package:todo_practice/todo_controller.dart';
 
 class Homepage extends HookWidget {
@@ -36,14 +37,12 @@ class Homepage extends HookWidget {
   }
 
   Widget _listItem(BuildContext context, String name) {
-    final controller = useProvider(todoViewController);
     return GestureDetector(
-      onTap: () async {
-        final result =
-            await Navigator.pushNamed<String>(context, '/c', arguments: name);
-        if (result != '') {
-          controller.addTodo(result);
-        }
+      onTap: () {
+        Navigator.push<String>(
+            context,
+            MaterialPageRoute<String>(
+                builder: (context) => const Changetodo()));
       },
       child: Container(
         decoration: BoxDecoration(
