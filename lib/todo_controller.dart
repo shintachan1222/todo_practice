@@ -24,4 +24,12 @@ class TodoViewController extends StateNotifier<TodoState> {
     final newtodo = [...state.todo, name];
     state = state.copyWith(todo: newtodo);
   }
+
+  void changeTodo(String name, int number) {
+    state.todo.removeAt(number);
+    state.todo.insert(number, name);
+
+    final changedtodo = state.todo;
+    state = state.copyWith(todo: changedtodo);
+  }
 }

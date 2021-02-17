@@ -14,23 +14,29 @@ class Changetodo extends HookWidget {
 
       return () {};
     });
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('ChangeTodo'),
-        ),
-        body: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextField(
-              controller: textcontroller,
-            ),
-            RaisedButton(
-              child: const Text('Change'),
-              onPressed: () {
-                Navigator.of(context).pop(textcontroller.text);
-              },
-            )
-          ],
-        ));
+    return WillPopScope(
+      onWillPop: () {
+        Navigator.pop(context, '');
+        return Future.value(false);
+      },
+      child: Scaffold(
+          appBar: AppBar(
+            title: const Text('ChangeTodo'),
+          ),
+          body: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: textcontroller,
+              ),
+              RaisedButton(
+                child: const Text('Change'),
+                onPressed: () {
+                  Navigator.of(context).pop(textcontroller.text);
+                },
+              )
+            ],
+          )),
+    );
   }
 }
