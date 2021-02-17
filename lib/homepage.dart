@@ -12,6 +12,7 @@ class Homepage extends HookWidget {
   Widget build(BuildContext context) {
     final controller = useProvider(todoViewController);
     final state = useProvider(todoViewController.state).todo;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('todo_practice'),
