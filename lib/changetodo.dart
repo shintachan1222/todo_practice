@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 class Changetodo extends HookWidget {
-  const Changetodo({Key key, String title}) : super(key: key);
+  const Changetodo({Key key, @required this.name}) : super(key: key);
+  final String name;
 
   @override
   Widget build(BuildContext context) {
     TextEditingController textcontroller;
 
-    final arg = ModalRoute.of(context).settings.arguments;
-
     useEffect(() {
-      textcontroller = TextEditingController(text: '$arg');
+      textcontroller = TextEditingController(text: '$name');
 
       return () {};
     });

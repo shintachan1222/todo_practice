@@ -6,7 +6,7 @@ import 'package:todo_practice/changetodo.dart';
 import 'package:todo_practice/todo_controller.dart';
 
 class Homepage extends HookWidget {
-  const Homepage({Key key, String title}) : super(key: key);
+  const Homepage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +26,8 @@ class Homepage extends HookWidget {
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: () async {
-            final result = await Navigator.of(context).push<String>(
-                MaterialPageRoute<String>(
-                    builder: (context) => const Addtodo()));
+            final result = await Navigator.push<String>(context,
+                MaterialPageRoute(builder: (context) => const Addtodo()));
             if (result != '') {
               controller.addTodo(result);
             }
@@ -38,11 +37,10 @@ class Homepage extends HookWidget {
 
   Widget _listItem(BuildContext context, String name) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push<String>(
-            context,
-            MaterialPageRoute<String>(
-                builder: (context) => const Changetodo()));
+      onTap: () async {
+        final changeresult = await Navigator.push<String>(context,
+            MaterialPageRoute(builder: (context) => Changetodo(name: name)));
+        print(changeresult);
       },
       child: Container(
         decoration: BoxDecoration(
