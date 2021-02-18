@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/all.dart';
 import 'package:todo_practice/addtodo.dart';
 import 'package:todo_practice/changetodo.dart';
+import 'package:todo_practice/state.dart';
 import 'package:todo_practice/todo_controller.dart';
 
 class Homepage extends HookWidget {
@@ -12,6 +13,13 @@ class Homepage extends HookWidget {
   Widget build(BuildContext context) {
     final controller = useProvider(todoViewController);
     final state = useProvider(todoViewController.state).todo;
+    final _isCheck = useState<dynamic>(List[]);
+
+    useEffect(() {
+      _isCheck = List<bool>.filled(state.length, false);
+
+      return () {};
+    });
 
     return Scaffold(
       appBar: AppBar(
@@ -19,10 +27,10 @@ class Homepage extends HookWidget {
         centerTitle: true,
       ),
       body: ListView.builder(
-        itemCount: state?.length,
+        itemCount: state.length,
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
-            onTap: () async {
+            onLongPress: () async {
               final changeresult = await Navigator.push<String>(
                   context,
                   MaterialPageRoute(
@@ -44,8 +52,12 @@ class Homepage extends HookWidget {
                 ],
               ),
               margin: const EdgeInsets.all(10),
-              child: ListTile(
+              child: CheckboxListTile(
+                value: _isCheck[index],
                 title: Text(state[index]),
+                onChanged: (bool value) {
+                  _isCheck[index] = value;
+                },
               ),
             ),
           );

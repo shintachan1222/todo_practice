@@ -14,7 +14,7 @@ class _$TodoStateTearOff {
   const _$TodoStateTearOff();
 
 // ignore: unused_element
-  _TodoState call({List<String> todo = const ['宿題']}) {
+  _TodoState call({@nullable List<String> todo = const ['宿題']}) {
     return _TodoState(
       todo: todo,
     );
@@ -27,6 +27,7 @@ const $TodoState = _$TodoStateTearOff();
 
 /// @nodoc
 mixin _$TodoState {
+  @nullable
   List<String> get todo;
 
   @JsonKey(ignore: true)
@@ -37,7 +38,7 @@ mixin _$TodoState {
 abstract class $TodoStateCopyWith<$Res> {
   factory $TodoStateCopyWith(TodoState value, $Res Function(TodoState) then) =
       _$TodoStateCopyWithImpl<$Res>;
-  $Res call({List<String> todo});
+  $Res call({@nullable List<String> todo});
 }
 
 /// @nodoc
@@ -64,7 +65,7 @@ abstract class _$TodoStateCopyWith<$Res> implements $TodoStateCopyWith<$Res> {
           _TodoState value, $Res Function(_TodoState) then) =
       __$TodoStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<String> todo});
+  $Res call({@nullable List<String> todo});
 }
 
 /// @nodoc
@@ -88,10 +89,11 @@ class __$TodoStateCopyWithImpl<$Res> extends _$TodoStateCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_TodoState implements _TodoState {
-  const _$_TodoState({this.todo = const ['宿題']}) : assert(todo != null);
+  const _$_TodoState({@nullable this.todo = const ['宿題']});
 
   @JsonKey(defaultValue: const ['宿題'])
   @override
+  @nullable
   final List<String> todo;
 
   @override
@@ -118,9 +120,10 @@ class _$_TodoState implements _TodoState {
 }
 
 abstract class _TodoState implements TodoState {
-  const factory _TodoState({List<String> todo}) = _$_TodoState;
+  const factory _TodoState({@nullable List<String> todo}) = _$_TodoState;
 
   @override
+  @nullable
   List<String> get todo;
   @override
   @JsonKey(ignore: true)

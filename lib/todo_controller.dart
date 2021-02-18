@@ -8,7 +8,7 @@ part 'todo_controller.freezed.dart';
 @freezed
 abstract class TodoState with _$TodoState {
   const factory TodoState({
-    @Default(['宿題']) List<String> todo,
+    @nullable @Default(['宿題']) List<String> todo,
   }) = _TodoState;
 }
 
