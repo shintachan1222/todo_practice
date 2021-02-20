@@ -3,7 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/all.dart';
 import 'package:todo_practice/addtodo.dart';
 import 'package:todo_practice/changetodo.dart';
-import 'package:todo_practice/state.dart';
+
 import 'package:todo_practice/todo_controller.dart';
 
 class Homepage extends HookWidget {
@@ -13,13 +13,7 @@ class Homepage extends HookWidget {
   Widget build(BuildContext context) {
     final controller = useProvider(todoViewController);
     final state = useProvider(todoViewController.state).todo;
-    final _isCheck = useState<dynamic>(List[]);
-
-    useEffect(() {
-      _isCheck = List<bool>.filled(state.length, false);
-
-      return () {};
-    });
+    final _isCheck = useProvider(todoViewController.state).isCheck;
 
     return Scaffold(
       appBar: AppBar(
@@ -55,8 +49,10 @@ class Homepage extends HookWidget {
               child: CheckboxListTile(
                 value: _isCheck[index],
                 title: Text(state[index]),
+                activeColor: Colors.blueAccent,
                 onChanged: (bool value) {
                   _isCheck[index] = value;
+                  print(_isCheck);
                 },
               ),
             ),
@@ -71,6 +67,7 @@ class Homepage extends HookWidget {
             if (result != '') {
               controller.addTodo(result);
             }
+            print(_isCheck);
           }),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/all.dart';
 import 'package:state_notifier/state_notifier.dart';
@@ -8,7 +9,8 @@ part 'todo_controller.freezed.dart';
 @freezed
 abstract class TodoState with _$TodoState {
   const factory TodoState({
-    @nullable @Default(['宿題']) List<String> todo,
+    @nullable @Default([null]) List<String> todo,
+    @nullable @Default([null]) List<bool> isCheck,
   }) = _TodoState;
 }
 
@@ -23,6 +25,8 @@ class TodoViewController extends StateNotifier<TodoState> {
   void addTodo(String name) {
     final newtodo = [...state.todo, name];
     state = state.copyWith(todo: newtodo);
+    final newisCheck = [...state.isCheck, false];
+    state = state.copyWith(isCheck: newisCheck);
   }
 
   void changeTodo(String name, int number) {

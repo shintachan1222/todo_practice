@@ -14,9 +14,12 @@ class _$TodoStateTearOff {
   const _$TodoStateTearOff();
 
 // ignore: unused_element
-  _TodoState call({@nullable List<String> todo = const ['宿題']}) {
+  _TodoState call(
+      {@nullable List<String> todo = const [null],
+      @nullable List<bool> isCheck = const [null]}) {
     return _TodoState(
       todo: todo,
+      isCheck: isCheck,
     );
   }
 }
@@ -29,6 +32,8 @@ const $TodoState = _$TodoStateTearOff();
 mixin _$TodoState {
   @nullable
   List<String> get todo;
+  @nullable
+  List<bool> get isCheck;
 
   @JsonKey(ignore: true)
   $TodoStateCopyWith<TodoState> get copyWith;
@@ -38,7 +43,7 @@ mixin _$TodoState {
 abstract class $TodoStateCopyWith<$Res> {
   factory $TodoStateCopyWith(TodoState value, $Res Function(TodoState) then) =
       _$TodoStateCopyWithImpl<$Res>;
-  $Res call({@nullable List<String> todo});
+  $Res call({@nullable List<String> todo, @nullable List<bool> isCheck});
 }
 
 /// @nodoc
@@ -52,9 +57,11 @@ class _$TodoStateCopyWithImpl<$Res> implements $TodoStateCopyWith<$Res> {
   @override
   $Res call({
     Object todo = freezed,
+    Object isCheck = freezed,
   }) {
     return _then(_value.copyWith(
       todo: todo == freezed ? _value.todo : todo as List<String>,
+      isCheck: isCheck == freezed ? _value.isCheck : isCheck as List<bool>,
     ));
   }
 }
@@ -65,7 +72,7 @@ abstract class _$TodoStateCopyWith<$Res> implements $TodoStateCopyWith<$Res> {
           _TodoState value, $Res Function(_TodoState) then) =
       __$TodoStateCopyWithImpl<$Res>;
   @override
-  $Res call({@nullable List<String> todo});
+  $Res call({@nullable List<String> todo, @nullable List<bool> isCheck});
 }
 
 /// @nodoc
@@ -80,25 +87,33 @@ class __$TodoStateCopyWithImpl<$Res> extends _$TodoStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object todo = freezed,
+    Object isCheck = freezed,
   }) {
     return _then(_TodoState(
       todo: todo == freezed ? _value.todo : todo as List<String>,
+      isCheck: isCheck == freezed ? _value.isCheck : isCheck as List<bool>,
     ));
   }
 }
 
 /// @nodoc
 class _$_TodoState implements _TodoState {
-  const _$_TodoState({@nullable this.todo = const ['宿題']});
+  const _$_TodoState(
+      {@nullable this.todo = const [null],
+      @nullable this.isCheck = const [null]});
 
-  @JsonKey(defaultValue: const ['宿題'])
+  @JsonKey(defaultValue: const [null])
   @override
   @nullable
   final List<String> todo;
+  @JsonKey(defaultValue: const [null])
+  @override
+  @nullable
+  final List<bool> isCheck;
 
   @override
   String toString() {
-    return 'TodoState(todo: $todo)';
+    return 'TodoState(todo: $todo, isCheck: $isCheck)';
   }
 
   @override
@@ -106,12 +121,16 @@ class _$_TodoState implements _TodoState {
     return identical(this, other) ||
         (other is _TodoState &&
             (identical(other.todo, todo) ||
-                const DeepCollectionEquality().equals(other.todo, todo)));
+                const DeepCollectionEquality().equals(other.todo, todo)) &&
+            (identical(other.isCheck, isCheck) ||
+                const DeepCollectionEquality().equals(other.isCheck, isCheck)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(todo);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(todo) ^
+      const DeepCollectionEquality().hash(isCheck);
 
   @JsonKey(ignore: true)
   @override
@@ -120,11 +139,16 @@ class _$_TodoState implements _TodoState {
 }
 
 abstract class _TodoState implements TodoState {
-  const factory _TodoState({@nullable List<String> todo}) = _$_TodoState;
+  const factory _TodoState(
+      {@nullable List<String> todo,
+      @nullable List<bool> isCheck}) = _$_TodoState;
 
   @override
   @nullable
   List<String> get todo;
+  @override
+  @nullable
+  List<bool> get isCheck;
   @override
   @JsonKey(ignore: true)
   _$TodoStateCopyWith<_TodoState> get copyWith;
